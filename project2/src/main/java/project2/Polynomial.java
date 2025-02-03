@@ -9,6 +9,7 @@ public class Polynomial implements Comparable<Polynomial> {
     // Default constructor
     public Polynomial() {
         this.coefficients = new ArrayList<>();
+        this.coefficients.add(0.0);  // Represents the zero polynomial correctly
     }
 
     // Constructor with coefficients array
@@ -35,13 +36,16 @@ public class Polynomial implements Comparable<Polynomial> {
         while (this.coefficients.size() > 1 && this.coefficients.get(this.coefficients.size() - 1) == 0) {
             this.coefficients.remove(this.coefficients.size() - 1);
         }
-        if (this.coefficients.size() == 1 && this.coefficients.get(0) == 0) {
+        if (this.coefficients.isEmpty()) {
             this.coefficients.add(0.0);  // Ensure zero polynomial is handled correctly
         }
     }
 
     // Get the degree of the polynomial
     public int getDegree() {
+        if (this.coefficients.size() == 1 && this.coefficients.get(0) == 0) {
+            return -1;  // Degree of the zero polynomial
+        }
         return this.coefficients.size() - 1;
     }
 
@@ -107,11 +111,12 @@ public class Polynomial implements Comparable<Polynomial> {
     public int compareTo(Polynomial other) {
         if (this.getDegree() > other.getDegree()) return 1;
         if (this.getDegree() < other.getDegree()) return -1;
+        
         for (int i = this.getDegree(); i >= 0; i--) {
             if (this.coefficients.get(i) > other.coefficients.get(i)) return 1;
             if (this.coefficients.get(i) < other.coefficients.get(i)) return -1;
         }
-        return 0;
+        return 0;  // If all coefficients are the same
     }
 
     // Override toString to display the polynomial in standard form

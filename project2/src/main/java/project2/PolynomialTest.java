@@ -12,6 +12,9 @@ public class PolynomialTest {
         Polynomial p3 = p1.add(p2);
         Polynomial p4 = p1.subtract(p2);
         Polynomial p5 = p1.multiply(p2);
+        Polynomial p6 = new Polynomial(); // empty polynomial
+        Polynomial p7 = new Polynomial(new double[]{}); // also should be empty
+        Polynomial p8 = new Polynomial(new double[]{0, 0, 0, 0}); // zero polynomial
 
         System.out.println("Testing Polynomial Operations");
         System.out.println("Polynomial 1: " + p1);
@@ -19,6 +22,9 @@ public class PolynomialTest {
         System.out.println("Addition Result: " + p3);
         System.out.println("Subtraction Result: " + p4);
         System.out.println("Multiplication Result: " + p5);
+        System.out.println("Empty Polynomial: " + p6);
+        System.out.println("Also Empty Polynomial: " + p7);
+        System.out.println("Zero Polynomial: " + p8);
 
         // Sorting polynomials
         ArrayList<Polynomial> polynomials = new ArrayList<>();
@@ -27,6 +33,9 @@ public class PolynomialTest {
         polynomials.add(p3);
         polynomials.add(p4);
         polynomials.add(p5);
+        polynomials.add(p6);
+        polynomials.add(p7);
+        polynomials.add(p8);
         Collections.sort(polynomials);
 
         System.out.println("\nSorted Polynomials:");
